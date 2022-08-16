@@ -5,8 +5,14 @@ import "forge-std/Test.sol";
 
 import "../src/Questionnaire.sol";
 
-contract QuestionnaireTest is Test {
+interface CheatCodes {
+    function deal(address, uint256) external;
+}
+
+contract QuestionnaireTest is DSTest {
     Questionnaire public game;
+    CheatCodes constant cheats = CheatCodes(HEVM_ADDRESS);
+
     function setUp() public {
         string memory question = "What is the final destination of ours at the job?";
         string memory answer = "new guy";
@@ -18,7 +24,24 @@ contract QuestionnaireTest is Test {
 
     }
 
-    function testExample() public {
-        assertTrue(true);
+    function testQuestionFail() public {
+        try game.guess("1"){
+            assertTrue(false);
+        }
+        catch{
+            assertTrue(true);
+        }
     }
+
+    function testQuestionPass() public {
+        uint256 beginBalance = address(this).balance;
+        cheats.deal(address(game), 100000);
+        game.guess("new guy");
+        assertEq(address(this).balance, beginBalance + 100000);
+    }
+
+    fallback() external payable {}
+
+    receive() external payable {}
+
 }
