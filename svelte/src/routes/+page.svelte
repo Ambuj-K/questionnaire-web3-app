@@ -1,2 +1,6 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import WalletConnect from "../lib/walletConnect.svelte";
+</script>
+
+<h1>Welcome to Questionnaire</h1>
+<WalletConnect/>
