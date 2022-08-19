@@ -17,10 +17,10 @@
     $: funding = 0;
     let qContract = null;
     async function getQuestion(){
-        qContract = new ethers.Contract(contractAddr, contractAbi.abi, signer);
-        let question = await qContract.getQuestion();
+        qContract = new ethers.Contract(questionAddr, contractAbi.abi, web3Props.signer);
+        question = await qContract.question();
         value = Number(ethers.utils.formatEther(await web3Props.provider.getBalance(questionAddr)))
-        qContract.on('QuizFunded', (balance) =>{
+        qContract.on('QuestionnaireFunded', (balance) =>{
             value = Number(ethers.utils.formatEther(balance));
         });
         qContract.on('AnswerGuessed', () =>{
