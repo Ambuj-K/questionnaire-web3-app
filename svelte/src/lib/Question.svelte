@@ -51,5 +51,6 @@
     <input type="text" bind:value={answer} />
     <button on:click={submitGuess} disabled={value <= 0}>Submit Answer</button>
     <br>
+    <input type="text" bind:value={funding} />
     <button on:click={fund}>Fund</button>
 </div>
