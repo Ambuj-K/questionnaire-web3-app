@@ -28,7 +28,12 @@
         });
     }
     async function submitGuess(){
-        await qContract.guess(answer); 
+        //TODO
+        //modify contract from require to if, redeploy, and handle wrong answer event with message
+        //for require failures, add comments, following protocols for function params
+        await qContract.guess(answer, {
+            gasLimit: 100000
+        }); 
     }
 
     async function fund(){
