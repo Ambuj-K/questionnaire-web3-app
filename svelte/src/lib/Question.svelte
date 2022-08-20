@@ -31,6 +31,7 @@
         //TODO
         //modify contract from require to if, redeploy, and handle wrong answer event with message
         //for require failures, add comments, following protocols for function params
+        //add wrong right answer events in contract and effects on svelte
         await qContract.guess(answer, {
             gasLimit: 100000
         }); 
